@@ -1,0 +1,15 @@
+@import "variables";
+
+.header {
+  text-align: center;
+  background: $blue;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  &__name {
+    margin: 0;
+    padding: 10px 0;
+  }
+}
