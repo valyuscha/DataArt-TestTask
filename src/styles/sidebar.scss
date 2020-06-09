@@ -1,0 +1,50 @@
+@import "variables";
+
+.sidebar {
+  width: 280px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 9999;
+  //background: #00d6d6;
+  background: #00b8b8;
+  box-sizing: border-box;
+  padding: 10px;
+
+  &__name {
+    line-height: 35px;
+  }
+
+  &__buttons {
+    margin-left: 25%;
+  }
+
+  &__button {
+    margin-bottom: 10px;
+
+    p {
+      font-size: 20px;
+      display: inline-block;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    button {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid $page-color;
+      outline: none;
+      position: relative;
+      right: 5px;
+      bottom: 2px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  }
+}
+
+.checked {
+  background: $radio-btn-background;
+}

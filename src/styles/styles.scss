@@ -1,6 +1,28 @@
 @import "~normalize.css";
 @import "fonts";
+@import "variables";
+
+@import "header";
+@import "sidebar";
 
 body {
   font-family: Roboto, sans-serif;
+  background: url("../assets/img/page-background.jpg") no-repeat;
+  background-size: cover;
+}
+
+.layout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .7);
+  z-index: 1;
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+  color: $page-color;
 }
