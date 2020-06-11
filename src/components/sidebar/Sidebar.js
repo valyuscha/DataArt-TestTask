@@ -7,6 +7,16 @@ export function Sidebar() {
   const BTNS_WRAPPER_POSITION = 3
   const btnsWrapper = sidebar.childNodes[BTNS_WRAPPER_POSITION]
 
+  const buttons = getButtons(btnsWrapper)
+  
+  buttons.find(btn => {
+    if (btn.textContent === 'All') {
+      const radioBtn = btn.previousSibling.previousSibling
+      addClass(radioBtn, 'checked')
+      return btn
+    }
+  })
+
   let btn
 
   btnsWrapper.addEventListener('click', e => {
@@ -27,11 +37,19 @@ export function Sidebar() {
 }
 
 function removeClassFromAllButtons(selector, className) {
+  const buttons = getButtons(selector)
+  buttons.forEach(btn => removeClass(btn, className))
+}
+
+function getButtons(selector) {
+  const buttons = []
   selector.childNodes.forEach(elem => {
     elem.childNodes.forEach(btn => {
       if (btn.nodeName !== '#text') {
-        removeClass(btn, className)
+        buttons.push(btn)
       }
     })
   })
+
+  return buttons
 }
