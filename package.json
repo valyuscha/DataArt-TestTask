@@ -7,7 +7,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "watch": "webpack --mode production --watch",
-    "start": "webpack-dev-server --mode production --open"
+    "start": "webpack-dev-server --mode development --open"
   },
   "browserslist": "> 0.25%, not dead",
   "keywords": [

@@ -29,8 +29,8 @@ function createSidebarButtons() {
   return sidebarButtons.map(btn => {
     const button = `
       <div class="sidebar__button">
-        <button data-type="radio-btn" data-btn="btn"></button>
-        <p data-type="radio-btn" data-label="label">${btn}</p>
+        <button data-btn="btn"></button>
+        <p data-label="label">${btn}</p>
       </div>
     `
 
