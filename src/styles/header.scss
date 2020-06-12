@@ -1,16 +1,18 @@
 @import "variables";
 
 .header {
-  text-align: center;
+  height: $header-height;
   background: $blue;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &__name {
     margin: 0;
-    padding: 10px 0;
   }
 }

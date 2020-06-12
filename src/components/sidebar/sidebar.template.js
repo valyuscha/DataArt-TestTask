@@ -1,6 +1,6 @@
 let buttonsWrapper
 
-export function createSidebar() {
+export function createSidebarTemplate() {
   const sidebar = document.createElement('div')
   sidebar.classList.add('sidebar')
   sidebar.innerHTML = createSidebarName()

@@ -4,11 +4,13 @@
 
 @import "header";
 @import "sidebar";
+@import "countries";
 
 body {
   font-family: Roboto, sans-serif;
   background: url("../assets/img/page-background.jpg") no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .layout {
