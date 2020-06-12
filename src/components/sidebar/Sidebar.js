@@ -1,8 +1,8 @@
 import {addClass, removeClass} from '@/utils'
-import {createSidebar} from './sidebar.template'
+import {createSidebarTemplate} from './sidebar.template'
 
 export function Sidebar() {
-  const sidebar = createSidebar()
+  const sidebar = createSidebarTemplate()
 
   const BTNS_WRAPPER_POSITION = 3
   const btnsWrapper = sidebar.childNodes[BTNS_WRAPPER_POSITION]

@@ -6,4 +6,10 @@ import {Countries} from '@/components/countries/Countries'
 const app = document.getElementById('app')
 app.append(Header())
 app.append(Sidebar())
-Countries()
+
+async function renderCountries() {
+  const countries = await Countries()
+  app.append(countries)
+}
+
+renderCountries()
