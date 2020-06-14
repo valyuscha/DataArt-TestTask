@@ -20,7 +20,7 @@
 
       h3 {
         margin: 0;
-        padding: 0 10px 0 $space-between-flag-and-country-name;
+        padding: 0 10px 15px $space-between-flag-and-country-name;
       }
 
       img {
@@ -50,6 +50,7 @@
         li {
           list-style: none;
           margin-left: 15px;
+          padding-bottom: 10px;
           color: $countries-info-color;
 
           span {
@@ -71,12 +72,4 @@
       }
     }
   }
-}
-
-.show {
-  height: auto;
-}
-
-.hide {
-  height: 0;
 }

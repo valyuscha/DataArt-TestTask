@@ -1,17 +1,16 @@
+import {getFilteredCountries, filteredCountries} from '@components/sidebar/Sidebar'
 import {addClass} from '@/utils'
-import {getAllCountries} from './Countries'
 
-let allCountries
+let countries
 
 export async function returnCountriesTemplate() {
-  allCountries = await getAllCountries()
-
+  countries = await filteredCountries()
   return createCountries()
 }
 
 export function createCountries() {
   const countriesWrapper = createCountriesWrapper()
-  allCountries.map(country => {
+  countries.map(country => {
     return countriesWrapper.insertAdjacentHTML('beforeend', createCountryTemplate(country))
   })
 
@@ -20,6 +19,7 @@ export function createCountries() {
 
 function createCountriesWrapper() {
   const countriesWrapper = document.createElement('div')
+  countriesWrapper.id = 'countriesWrapper'
   addClass(countriesWrapper, 'countries__wrapper')
 
   return countriesWrapper
@@ -53,8 +53,7 @@ function createMainInfo(country) {
   return `
     <div class="main-info__wrapper">
       <img src="${country.flag}" alt="">
-      <h3>${country.name}</h3>
-      <!--<i class="fas fa-angle-down"></i>-->
+      <h3>${country.name}</h3> 
     </div> 
   `
 }

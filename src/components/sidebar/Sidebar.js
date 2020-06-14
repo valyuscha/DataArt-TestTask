@@ -1,5 +1,9 @@
+import {getAllCountries} from '@/components/countries/Countries'
 import {addClass, removeClass} from '@/utils'
+import {renderCountries} from '@/index'
 import {createSidebarTemplate} from './sidebar.template'
+
+export let filteredCountries = async () => await getAllCountries()
 
 export function Sidebar() {
   const sidebar = createSidebarTemplate()
@@ -8,10 +12,10 @@ export function Sidebar() {
   const btnsWrapper = sidebar.childNodes[BTNS_WRAPPER_POSITION]
 
   const buttons = getButtons(btnsWrapper)
-  
+
   buttons.find(btn => {
     if (btn.textContent === 'All') {
-      const radioBtn = btn.previousSibling.previousSibling
+      const radioBtn = btn.previousElementSibling
       addClass(radioBtn, 'checked')
       return btn
     }
@@ -19,17 +23,27 @@ export function Sidebar() {
 
   let btn
 
-  btnsWrapper.addEventListener('click', e => {
+  btnsWrapper.addEventListener('click', async e => {
     const data = e.target.dataset
-    data.label
-      ? btn = e.target.previousSibling.previousSibling
-      : data.btn
-      ? btn = e.target
-      : ''
+    if (data.label) {
+      btn = e.target.previousElementSibling
+      filteredCountries = async () => await filterCountriesByRegion(e.target)
+    } else if (data.btn) {
+      btn = e.target
+      filteredCountries = async () => await filterCountriesByRegion(e.target.nextElementSibling)
+    }
 
     if (data.label || data.btn) {
       removeClassFromAllButtons(btnsWrapper, 'checked')
       addClass(btn, 'checked')
+      const app = document.getElementById('app')
+      app.childNodes.forEach(item => {
+        if (item.id === 'countriesWrapper') {
+          app.removeChild(item)
+        }
+      })
+
+      await renderCountries()
     }
   })
 
@@ -52,4 +66,21 @@ function getButtons(selector) {
   })
 
   return buttons
+}
+
+export async function filterCountriesByRegion(selectedItem) {
+  let allCountries = await getAllCountries()
+  let countriesAfterFilter = allCountries
+
+  return allCountries.filter(country => {
+    if (country.region.toLowerCase() === selectedItem.textContent.toLowerCase()) {
+      countriesAfterFilter = []
+      countriesAfterFilter.push(country)
+      return countriesAfterFilter
+    } else if (selectedItem.textContent.toLowerCase() === 'all') {
+      countriesAfterFilter = []
+      countriesAfterFilter.push(country)
+      return countriesAfterFilter
+    }
+  })
 }

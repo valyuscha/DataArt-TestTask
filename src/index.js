@@ -7,9 +7,9 @@ const app = document.getElementById('app')
 app.append(Header())
 app.append(Sidebar())
 
-async function renderCountries() {
+export async function renderCountries() {
   const countries = await Countries()
-  app.append(countries)
+  return app.append(countries)
 }
 
 renderCountries()
