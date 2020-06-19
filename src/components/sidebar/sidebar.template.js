@@ -1,8 +1,11 @@
+import {addClass} from '../../utils.js'
+
 let buttonsWrapper
 
 export function createSidebarTemplate() {
   const sidebar = document.createElement('div')
-  sidebar.classList.add('sidebar')
+  addClass(sidebar, 'sidebar')
+  sidebar.id = 'sidebar'
   sidebar.innerHTML = createSidebarName()
 
   buttonsWrapper = document.createElement('div')

@@ -1,17 +1,33 @@
-import {getFilteredCountries, filteredCountries} from '@components/sidebar/Sidebar'
+import {getFilteredCountries} from '@components/sidebar/Sidebar'
 import {addClass} from '@/utils'
+import {createLoaderTemplate, createLoaderWrapper} from '../UI/loader/loader'
 
-let countries
-
-export async function returnCountriesTemplate() {
-  countries = await filteredCountries()
-  return createCountries()
+export async function returnCountriesTemplate(countries) {
+  return await createCountries(countries)
 }
 
-export function createCountries() {
+export async function createCountries(countries) {
   const countriesWrapper = createCountriesWrapper()
+  let app = document.getElementById('app')
+
+  // let loaderWrapper = createLoaderWrapper()
+  // console.log(countries)
+  // // if (!countries) {
+  //   loaderWrapper.innerHTML = createLoaderTemplate()
+  //   app.append(loaderWrapper)
+  // }
+
+  const filterField = document.getElementById('filterFieldWrapper')
+
+  if (!countries.length) {
+    countriesWrapper.style.opacity = '0'
+  } else {
+    filterField.style.opacity = '1'
+    countriesWrapper.style.opacity = '1'
+  }
+
   countries.map(country => {
-    return countriesWrapper.insertAdjacentHTML('beforeend', createCountryTemplate(country))
+    countriesWrapper.insertAdjacentHTML('beforeend', createCountryTemplate(country))
   })
 
   return countriesWrapper
@@ -37,7 +53,7 @@ function createCountryTemplate(country) {
   const translationList = createListWithInfo('translations__wrapper', 'Translations', translations)
 
   return `
-    <div class="country__wrapper">
+    <div class="country__wrapper" data-type="country">
       ${mainInfo} 
       <div class="hidden-info__wrapper">
         ${mainHiddenInfo} 

@@ -1,16 +1,15 @@
 import planetImg from '@/assets/img/page-background.jpg'
-import {returnCountriesTemplate} from './countries.template'
+import {createShowMoreBtn, returnCountriesTemplate} from './countries.template'
 
-export async function Countries() {
-  return await returnCountriesTemplate()
+export async function Countries(countries) {
+  return await returnCountriesTemplate(countries)
 }
 
 export async function getAllCountries() {
   const res = await fetch('https://restcountries.eu/rest/v2/all')
   const countriesFromApi = await res.json()
-  countriesFromApi.length = 12
 
-  return countriesFromApi.map(country => {
+  countriesFromApi.map(country => {
     const currencies = country.currencies.map(item => {
       return {
         code: item.code,
@@ -32,4 +31,6 @@ export async function getAllCountries() {
       } || 'We haven\'t translations for this country('
     }
   })
+
+  return countriesFromApi
 }
