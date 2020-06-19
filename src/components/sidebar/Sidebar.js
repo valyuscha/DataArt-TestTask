@@ -1,9 +1,9 @@
 import {getAllCountries} from '@/components/countries/Countries'
+import {filteredCountriesArr} from '@/components/filterField/FilterField'
 import {addClass, removeClass} from '@/utils'
 import {renderCountries} from '@/index'
+import {createLoaderTemplate, createLoaderWrapper} from '../UI/loader/loader'
 import {createSidebarTemplate} from './sidebar.template'
-
-export let filteredCountries = async () => await getAllCountries()
 
 export function Sidebar() {
   const sidebar = createSidebarTemplate()
@@ -22,28 +22,43 @@ export function Sidebar() {
   })
 
   let btn
+  let filteredArrByRegion
 
   btnsWrapper.addEventListener('click', async e => {
     const data = e.target.dataset
+    const app = document.getElementById('app')
     if (data.label) {
       btn = e.target.previousElementSibling
-      filteredCountries = async () => await filterCountriesByRegion(e.target)
+      filteredArrByRegion = await filterCountriesByRegion(e.target)
     } else if (data.btn) {
       btn = e.target
-      filteredCountries = async () => await filterCountriesByRegion(e.target.nextElementSibling)
+      filteredArrByRegion = await filterCountriesByRegion(e.target.nextElementSibling)
     }
 
     if (data.label || data.btn) {
       removeClassFromAllButtons(btnsWrapper, 'checked')
       addClass(btn, 'checked')
-      const app = document.getElementById('app')
+
+      const filterField = document.getElementById('filterField')
+      filterField.value = ''
+
+
       app.childNodes.forEach(item => {
         if (item.id === 'countriesWrapper') {
           app.removeChild(item)
         }
       })
 
-      await renderCountries()
+      const filterFieldWrapper = document.getElementById('filterFieldWrapper')
+      filterFieldWrapper.style.borderRadius = '20px 20px 0 0'
+
+      const errorMessage = document.getElementById('error-message')
+      addClass(errorMessage, 'display-none')
+
+      await renderCountries(await filteredArrByRegion)
+
+      removeClass(filterFieldWrapper, 'display-none')
+      addClass(filterFieldWrapper, 'display-block')
     }
   })
 
@@ -68,7 +83,7 @@ function getButtons(selector) {
   return buttons
 }
 
-export async function filterCountriesByRegion(selectedItem) {
+async function filterCountriesByRegion(selectedItem) {
   let allCountries = await getAllCountries()
   let countriesAfterFilter = allCountries
 

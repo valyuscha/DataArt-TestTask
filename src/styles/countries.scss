@@ -1,10 +1,12 @@
 @import "variables";
 
 .countries__wrapper {
-  margin: $header-height + 50px 50px 50px $sidebar-width + 50px;
+  width: $filter-field-width;
+  box-sizing: border-box;
+  margin: 0 50px 50px $sidebar-width + 50px;
   background: rgba(0, 0, 0, .5);
-  padding: 30px 10px 0 30px;
-  border-radius: 20px;
+  padding: 0 10px 0 30px;
+  border-radius: 0 0 20px 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -70,6 +72,28 @@
         background-color: rgba(0, 0, 0, .7);
         border-radius: 11px;
       }
+    }
+  }
+}
+
+.show-more-btn__wrapper {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 50px;
+
+  button {
+    font-size: 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    color: $page-color;
+    background: $dark-green;
+    cursor: pointer;
+    outline: none;
+    transition: background .3s;
+
+    &:active {
+      background: #005555;
     }
   }
 }
