@@ -1,6 +1,4 @@
-import {getFilteredCountries} from '@components/sidebar/Sidebar'
 import {addClass} from '@/utils'
-import {createLoaderTemplate, createLoaderWrapper} from '../UI/loader/loader'
 
 export async function returnCountriesTemplate(countries) {
   return await createCountries(countries)
@@ -8,15 +6,6 @@ export async function returnCountriesTemplate(countries) {
 
 export async function createCountries(countries) {
   const countriesWrapper = createCountriesWrapper()
-  let app = document.getElementById('app')
-
-  // let loaderWrapper = createLoaderWrapper()
-  // console.log(countries)
-  // // if (!countries) {
-  //   loaderWrapper.innerHTML = createLoaderTemplate()
-  //   app.append(loaderWrapper)
-  // }
-
   const filterField = document.getElementById('filterFieldWrapper')
 
   if (!countries.length) {

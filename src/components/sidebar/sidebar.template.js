@@ -1,4 +1,4 @@
-import {addClass} from '../../utils.js'
+import {addClass} from '@/utils.js'
 
 let buttonsWrapper
 

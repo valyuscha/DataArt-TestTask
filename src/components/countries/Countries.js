@@ -1,5 +1,5 @@
 import planetImg from '@/assets/img/page-background.jpg'
-import {createShowMoreBtn, returnCountriesTemplate} from './countries.template'
+import {returnCountriesTemplate} from './countries.template'
 
 export async function Countries(countries) {
   return await returnCountriesTemplate(countries)

@@ -1,8 +1,6 @@
 import {getAllCountries} from '@/components/countries/Countries'
-import {filteredCountriesArr} from '@/components/filterField/FilterField'
 import {addClass, removeClass} from '@/utils'
 import {renderCountries} from '@/index'
-import {createLoaderTemplate, createLoaderWrapper} from '../UI/loader/loader'
 import {createSidebarTemplate} from './sidebar.template'
 
 export function Sidebar() {
